@@ -680,7 +680,7 @@ public class FlutterBluePlugin implements FlutterPlugin, ActivityAware, MethodCa
     @Override
     public boolean onRequestPermissionsResult(
             int requestCode, String[] permissions, int[] grantResults) {
-        iOperationOnPermission operation = operationsOnPermission.get(requestCode);
+        OperationOnPermission operation = operationsOnPermission.get(requestCode);
         if (operation != null && grantResults.length > 0) {
             operation.op(grantResults[0] == PackageManager.PERMISSION_GRANTED, permissions[0]);
             return true;
