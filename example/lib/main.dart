@@ -54,7 +54,7 @@ class BluetoothOffScreen extends StatelessWidget {
               'Bluetooth Adapter is ${state != null ? state.toString().substring(15) : 'not available'}.',
               style: Theme.of(context)
                   .primaryTextTheme
-                  .subhead
+                  .subtitle1
                   ?.copyWith(color: Colors.white),
             ),
           ],
@@ -111,7 +111,7 @@ class FindDevicesScreen extends StatelessWidget {
                 stream: FlutterBlue.instance.scanResults,
                 initialData: [],
                 builder: (c, snapshot) => Column(
-                  children: snapshot.data!
+                  children: snapshot.data ?? []
                       .map(
                         (r) => ScanResultTile(
                           result: r,
@@ -167,6 +167,9 @@ class DeviceScreen extends StatelessWidget {
   }
 
   List<Widget> _buildServiceTiles(List<BluetoothService> services) {
+    if (services == null) {
+      return [];
+    }
     return services
         .map(
           (s) => ServiceTile(
@@ -295,7 +298,7 @@ class DeviceScreen extends StatelessWidget {
               initialData: [],
               builder: (c, snapshot) {
                 return Column(
-                  children: _buildServiceTiles(snapshot.data!),
+                  children: _buildServiceTiles(snapshot.data),
                 );
               },
             ),
