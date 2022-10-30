@@ -18,7 +18,7 @@ class BluetoothDevice {
     required String macAddress,
     required this.name,
     required this.type,
-  })  : id = new DeviceIdentifier(macAddress),
+  })  : id = new DeviceIdentifier(macAddress);
 
   BehaviorSubject<bool> _isDiscoveringServices = BehaviorSubject.seeded(false);
   Stream<bool> get isDiscoveringServices => _isDiscoveringServices.stream;
