@@ -14,6 +14,12 @@ class BluetoothDevice {
         name = p.name,
         type = BluetoothDeviceType.values[p.type.value];
 
+  BluetoothDevice({
+    required String macAddress,
+    required this.name,
+    required this.type,
+  })  : id = new DeviceIdentifier(macAddress),
+
   BehaviorSubject<bool> _isDiscoveringServices = BehaviorSubject.seeded(false);
   Stream<bool> get isDiscoveringServices => _isDiscoveringServices.stream;
 
